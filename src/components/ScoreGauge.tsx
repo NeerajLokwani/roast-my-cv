@@ -1,6 +1,3 @@
-// Display ATS score as a large circular gauge
-// Score out of 100, color green if above 70, yellow if 50-70, red if below 50
-// Show score number in the center and "ATS Score" label below
 import React from 'react';
 
 interface ScoreGaugeProps {

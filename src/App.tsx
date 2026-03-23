@@ -1,9 +1,9 @@
-// App with file upload state, parse PDF on drop, call analyzeCV, 
+// App with file upload state, parse PDF on drop, call AnalyzeCV, 
 // show loading spinner while analyzing, display CVFeedback results
 // Use UploadZone, FeedbackCard, ScoreGauge, BeforeAfter components
 import React, { useState } from 'react';
-import { parsePdf } from './utils/ParsePdf';
-import { analyzeCV } from './utils/AnalyzeCV';
+import { ParsePdf } from './utils/ParsePdf';
+import { AnalyzeCV } from './utils/AnalyzeCV';
 import UploadZone from './components/UploadZone';
 import FeedbackCard from './components/FeedbackCard';
 import ScoreGauge from './components/ScoreGauge';
@@ -13,17 +13,17 @@ import './App.css';
 const App: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [cvText, setCvText] = useState<string>('');
-  const [feedback, setFeedback] = useState<null | Awaited<ReturnType<typeof analyzeCV>>>(null);
+  const [feedback, setFeedback] = useState<null | Awaited<ReturnType<typeof AnalyzeCV>>>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
   const handleFileUpload = async (file: File) => {
     setError('');
     try {
-      const text = await parsePdf(file);
+      const text = await ParsePdf(file);
       setCvText(text);
       setLoading(true);
-      const analysis = await analyzeCV(text);
+      const analysis = await AnalyzeCV(text);
       setFeedback(analysis);
     } catch (err) {
       setError((err as Error).message);

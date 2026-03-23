@@ -1,7 +1,3 @@
-// Display weak_bullets array as before/after comparison
-// Each item shows original bullet on the left in red background
-// and rewritten bullet on the right in green background
-// Title "Bullet Point Rewrites" at the top
 import React from 'react';
 
 interface BeforeAfterProps {

@@ -1,16 +1,6 @@
-// Send CV text to OpenAI-compatible chat completions API and return structured JSON with:
-// - ats_score: number out of 100
-// - weak_bullets: array of { original: string, rewritten: string }
-// - missing_keywords: string[]
-// - sections_feedback: { summary: string, experience: string, skills: string, education: string }
-// - top_3_fixes: string[]
-// Use VITE_OPENAI_API_KEY from env variables
-// System prompt should be a brutally honest senior recruiter and ATS expert
-
 import OpenAI from 'openai';
-
-// Response must be strict JSON only, no markdown, no extra text    
-export const analyzeCV = async (cvText: string): Promise<{
+  
+export const AnalyzeCV = async (cvText: string): Promise<{
     ats_score: number;
     weak_bullets: { original: string; rewritten: string }[];
     missing_keywords: string[];
@@ -60,25 +50,6 @@ Analyze the CV text and respond ONLY with valid JSON in this exact shape, no mar
           { role: 'user', content: cvText },
         ],
       });
-
-
-    // const response = await fetch('https://api.anthropic.com/v1/messages', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         'x-api-key': openai.apiKey,
-    //         'anthropic-version': '2023-06-01',
-    //         'anthropic-dangerous-direct-browser-access': 'true',
-    //     },
-    //     body: JSON.stringify({
-    //         model: 'claude-sonnet-4-20250514',
-    //         max_tokens: 1500,
-    //         system: systemPrompt,
-    //         messages: [
-    //             { role: 'user', content: cvText },
-    //         ],
-    //     }),
-    // });
 
     const content = response.choices[0]?.message?.content;
     if (!content || typeof content !== 'string') {

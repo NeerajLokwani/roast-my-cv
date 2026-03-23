@@ -1,7 +1,3 @@
-// Drag and drop zone that accepts PDF files only
-// Shows upload icon and "Drop your CV here or click to upload" text
-// Calls onFileUpload prop with the File object when a PDF is dropped or selected
-// Show file name after upload, highlight border on drag over
 import React, { useState } from 'react';
 
 interface UploadZoneProps {

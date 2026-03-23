@@ -1,6 +1,5 @@
-// Accept a PDF File object, read it as ArrayBuffer,
-// extract all text content and return it as a single string    
-export const parsePdf = (file: File): Promise<string> => {
+
+export const ParsePdf = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = async (event) => {
