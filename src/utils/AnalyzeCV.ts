@@ -24,8 +24,8 @@ export const analyzeCV = async (cvText: string): Promise<{
     top_3_fixes: string[];
 }> => {
   const apiKey = import.meta.env.VITE_OPENAI_API_KEY as string | undefined;
-  const baseURL = (import.meta.env.VITE_OPENAI_BASE_URL as string | undefined) ?? 'https://router.huggingface.co/v1';
-  const model = (import.meta.env.VITE_OPENAI_MODEL as string | undefined) ?? 'openai/gpt-oss-120b';
+  const baseURL = 'https://router.huggingface.co/v1';
+  const model = 'openai/gpt-oss-120b';
 
   if (!apiKey) {
     throw new Error('OpenAI API key is not set in environment variables');
