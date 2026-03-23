@@ -38,7 +38,7 @@ npm run dev
 
 ## Live Demo
 
-[roastmycv.vercel.app](https://roastmycv.vercel.app)
+[roastmycv.vercel.app](https://roast-my-cv-two.vercel.app/)
 
 ---
 
