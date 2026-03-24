@@ -28,7 +28,7 @@ npm install
 
 Create a `.env` file in the root:
 ```
-VITE_ANTHROPIC_API_KEY=your_api_key_here
+VITE_GITHUB_TOKEN=your_api_key_here
 ```
 
 Then:
