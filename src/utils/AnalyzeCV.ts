@@ -41,17 +41,32 @@ Analyze the CV text and respond ONLY with valid JSON in this exact shape, no mar
     "projects": "..."
   },
   "top_3_fixes": ["...", "...", "..."]
-}`;
+}
+
+Rules:
+- Use CURRENT_DATE from the user message as the source of truth for all date checks.
+- A date is "future" only if it is later than CURRENT_DATE using month/year precision.
+- Do not call a past or current month/year date "future".
+- If a date is ambiguous, avoid claiming it is future and give a neutral improvement suggestion instead.`;
+
+  const currentDate = new Date().toLocaleString('en-US', {
+    month: 'short',
+    year: 'numeric',
+  });
 
   const response = await openai.chat.completions.create({
       model,
       messages: [
         { role: 'system', content: systemPrompt },
-        { role: 'user', content: cvText },
+        {
+          role: 'user',
+          content: `CURRENT_DATE: ${currentDate}\n\nCV_TEXT:\n${cvText}`,
+        },
       ],
     });
 
   const content = response.choices[0]?.message?.content;
+  
   if (!content || typeof content !== 'string') {
     throw new Error('OpenAI API returned an empty response');
   }

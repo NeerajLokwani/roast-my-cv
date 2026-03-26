@@ -21,6 +21,7 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onFileUpload }) => {
         e.preventDefault();
         setIsDragging(false);
         const file = e.dataTransfer.files[0];
+        
         if (file && file.type === 'application/pdf') {
             setFileName(file.name);
             onFileUpload(file);
@@ -31,6 +32,7 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onFileUpload }) => {
 
     const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
+        
         if (file && file.type === 'application/pdf') {
             setFileName(file.name);
             onFileUpload(file);

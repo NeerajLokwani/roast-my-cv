@@ -12,12 +12,18 @@ export const ParsePdf = (file: File): Promise<string> => {
                 ).toString();
                 const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
                 let textContent = '';
+
                 for (let i = 1; i <= pdf.numPages; i++) {
                     const page = await pdf.getPage(i);
                     const textItems = await page.getTextContent();
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    textItems.items.forEach((item: any) => {
-                        textContent += item.str + ' ';
+                    const items = Array.from(textItems.items as ArrayLike<unknown>);
+
+                    items.forEach((item) => {
+                        const text = (item as { str?: unknown })?.str;
+
+                        if (typeof text === 'string') {
+                            textContent += text + ' ';
+                        }
                     });
                 }
                 resolve(textContent.trim());

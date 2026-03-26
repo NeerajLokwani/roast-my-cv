@@ -8,6 +8,7 @@ const ScoreGauge: React.FC<ScoreGaugeProps> = ({ score }) => {
     const getColor = () => {
         if (score >= 70) return 'green';
         if (score >= 50) return 'yellow';
+        
         return 'red';
     };
 
